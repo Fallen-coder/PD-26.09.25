@@ -3,22 +3,25 @@ $continue =true;
 $books = [
     1 => [
         'title' => 'The Great Gatsby',
-        'author' => 'F. Scott Fitzgerald'
+        'author' => 'F. Scott Fitzgerald',
+        "status"=>"available"
     ],
     2 => [
         'title' => '1984',
-        'author' => 'George Orwell'
+        'author' => 'George Orwell',
+        "status"=>"available"
     ],
     3 => [
         'title' => 'Pride and Prejudice',
-        'author' => 'Jane Austen'
+        'author' => 'Jane Austen',
+        "status"=>"available"
     ]
 ];
 
 function addBook(&$books) {
     $title = readline("Enter title: ");
     $author = readline("Enter author: ");
-    $books[] = ['title' => $title, 'author' => $author];
+    $books[] = ['title' => $title, 'author' => $author,"status"=>"available"];
 }
 
 function deleteBook(&$books) {
@@ -27,7 +30,7 @@ function deleteBook(&$books) {
 }
 
 function displayBook($id, $book) {
-    echo "ID: {$id} // Title: ". $book['title'] . " // Author: " . $book['author']. "\n\n";
+    echo "ID: {$id} // Title: ". $book['title'] . " // Author: " . $book['author']. " // status: " . $book['status']. "\n\n";
 }
 
 function choice($choice,&$books){
