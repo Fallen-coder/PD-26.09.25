@@ -14,10 +14,10 @@ class Book{
     }
     public function setstatus($status){
         if( $status =="A"||$status =="a"){
-            $books["status"]="available";
+            $this->status="available";
             echo "status changed";
         }elseif ($status =="N"||$status =="n") {
-            $books["status"]="not available";
+            $this->status="not available";
             echo "status changed";
         }else{
             echo "no such thing exist";
