@@ -32,6 +32,19 @@ function deleteBook(&$books) {
 function displayBook($id, $book) {
     echo "ID: {$id} // Title: ". $book['title'] . " // Author: " . $book['author']. " // status: " . $book['status']. "\n\n";
 }
+function status(&$books){
+    
+    $status = readline("Enter A-available//N-not available: ");
+    if( $status =="A"||$status =="a"){
+        $books["status"]="available";
+        echo "status changed";
+    }elseif ($status =="N"||$status =="n") {
+        $books["status"]="not available";
+        echo "status changed";
+    }else{
+        echo "no such thing exist";
+    }
+}
 
 function choice($choice,&$books){
     switch ($choice) {
@@ -53,6 +66,10 @@ function choice($choice,&$books){
             deleteBook($books);
             break;
         case 5:
+            $id = readline("Enter book ID you want to change status: ");
+            status($books[$id]);
+        break;
+        case 6:
             echo "Goodbye!\n";
             $continue = false;
             break;
@@ -71,7 +88,8 @@ do {
     echo "2 - show a book\n";
     echo "3 - add a book\n";
     echo "4 - delete a book\n";
-    echo "5 - quit\n\n";
+    echo "5 - Change status\n";
+    echo "6 - quit\n\n";
     $choice = readline();
     choice($choice,$books);
     
