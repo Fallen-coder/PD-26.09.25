@@ -1,27 +1,25 @@
 <?php
+
+// 4. Uzlabojiet datu struktūru tā, lai katras grāmatas dati tiktu glabāti klases instancēs nevis asociatīvajos masīvos. done
+// $books masīvs drīkst palikt nemainīgs ar indeksiem 1, 2, 3 utt., pēc kuriem joprojām grāmatas varēs meklēt.
+//  Klasē jābūt tikai trim atribūtiem: 'title', 'author' un 'status'. done
+// Klasi veidojiet atsevišķā failā Book.php un ar 'require_once' iekļaujiet to aplikācijas failā.
+// Papildus kontruktoram, klasē ir jābūt metodēm 'display' un 'setStatus'.
+
+require_once "Book.php";
+
+
 $continue =true;
 $books = [
-    1 => [
-        'title' => 'The Great Gatsby',
-        'author' => 'F. Scott Fitzgerald',
-        "status"=>"available"
-    ],
-    2 => [
-        'title' => '1984',
-        'author' => 'George Orwell',
-        "status"=>"available"
-    ],
-    3 => [
-        'title' => 'Pride and Prejudice',
-        'author' => 'Jane Austen',
-        "status"=>"available"
-    ]
+    New Book('The Great Gatsby','F. Scott Fitzgerald',"available"),
+    New Book('1984','George Orwell',"available"),
+    New Book ('Pride and Prejudice','Jane Austen',"available") 
 ];
 
 function addBook(&$books) {
     $title = readline("Enter title: ");
     $author = readline("Enter author: ");
-    $books[] = ['title' => $title, 'author' => $author,"status"=>"available"];
+    $books[] = New Book($title,$author,"available");
 }
 
 function deleteBook(&$books) {
@@ -29,34 +27,34 @@ function deleteBook(&$books) {
     unset($books[$id]);
 }
 
-function displayBook($id, $book) {
-    echo "ID: {$id} // Title: ". $book['title'] . " // Author: " . $book['author']. " // status: " . $book['status']. "\n\n";
-}
-function status(&$books){
+// function displayBook($id, $book) {
+//     echo "ID: {$id} // Title: ". $book['title'] . " // Author: " . $book['author']. " // status: " . $book['status']. "\n\n";
+// }
+// function status(&$books){
     
-    $status = readline("Enter A-available//N-not available: ");
-    if( $status =="A"||$status =="a"){
-        $books["status"]="available";
-        echo "status changed";
-    }elseif ($status =="N"||$status =="n") {
-        $books["status"]="not available";
-        echo "status changed";
-    }else{
-        echo "no such thing exist";
-    }
-}
+//     $status = readline("Enter A-available//N-not available: ");
+//     if( $status =="A"||$status =="a"){
+//         $books["status"]="available";
+//         echo "status changed";
+//     }elseif ($status =="N"||$status =="n") {
+//         $books["status"]="not available";
+//         echo "status changed";
+//     }else{
+//         echo "no such thing exist";
+//     }
+// }
 
 function choice($choice,&$books){
     switch ($choice) {
         case 1:
             foreach ($books as $id => $book) {
-                displayBook($id, $book);
+                $book->display($id);
             }
 
             break;
         case 2:
             $id = readline("Enter book id: ");
-            displayBook($id, $books[$id]);
+            $books[$id]->display($id);
 
             break;
         case 3:
@@ -67,7 +65,8 @@ function choice($choice,&$books){
             break;
         case 5:
             $id = readline("Enter book ID you want to change status: ");
-            status($books[$id]);
+            $status = readline("Enter A-available//N-not available: ");
+            $books[$id]->setstatus($status);
         break;
         case 6:
             echo "Goodbye!\n";
