@@ -1,11 +1,4 @@
 <?php
-
-// 4. Uzlabojiet datu struktūru tā, lai katras grāmatas dati tiktu glabāti klases instancēs nevis asociatīvajos masīvos. done
-// $books masīvs drīkst palikt nemainīgs ar indeksiem 1, 2, 3 utt., pēc kuriem joprojām grāmatas varēs meklēt.
-//  Klasē jābūt tikai trim atribūtiem: 'title', 'author' un 'status'. done
-// Klasi veidojiet atsevišķā failā Book.php un ar 'require_once' iekļaujiet to aplikācijas failā.
-// Papildus kontruktoram, klasē ir jābūt metodēm 'display' un 'setStatus'.
-
 require_once "Book.php";
 
 
@@ -26,24 +19,6 @@ function deleteBook(&$books) {
     $id = readline("Enter book ID you want to delete: ");
     unset($books[$id]);
 }
-
-// function displayBook($id, $book) {
-//     echo "ID: {$id} // Title: ". $book['title'] . " // Author: " . $book['author']. " // status: " . $book['status']. "\n\n";
-// }
-// function status(&$books){
-    
-//     $status = readline("Enter A-available//N-not available: ");
-//     if( $status =="A"||$status =="a"){
-//         $books["status"]="available";
-//         echo "status changed";
-//     }elseif ($status =="N"||$status =="n") {
-//         $books["status"]="not available";
-//         echo "status changed";
-//     }else{
-//         echo "no such thing exist";
-//     }
-// }
-
 function choice($choice,&$books){
     switch ($choice) {
         case 1:
