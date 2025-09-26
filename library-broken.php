@@ -2,15 +2,15 @@
 
 $books = [
     1 => [
-        'title' => 'The Great Gatsby'
+        'title' => 'The Great Gatsby',
         'author' => 'F. Scott Fitzgerald'
-    ]
+    ],
     2 => [
-        'title' => '1984'
+        'title' => '1984',
         'author' => 'George Orwell'
-    ]
+    ],
     3 => [
-        'title' => 'Pride and Prejudice'
+        'title' => 'Pride and Prejudice',
         'author' => 'Jane Austen'
     ]
 ];
